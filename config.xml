@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widget xmlns = "http://www.w3.org/ns/widgets"
+xmlns:gap = "http://phonegap.com/ns/1.0"
+id = "fr.zeuf.localmemo"
+versionCode = "1"
+version = "1.0.0">
+  <name>LocalMemo</name>
+  <icon src="logo_localmemo.png" platform="android" density="ldpi" />
+  <plugin name="cordova-plugin-whitelist" spec="1.1.0" />
+  <content src="index.html" />
+  <access origin="*" />
+  <allow-intent href="http://*/*" />
+  <allow-intent href="https://*/*" />
+  <allow-intent href="tel:*" />
+  <allow-intent href="sms:*" />
+  <allow-intent href="mailto:*" />
+  <allow-intent href="geo:*" />
+  <description>
+      Local Memo
+  </description>
+  <author href="https://zeuf.fr" email="contact@zeuf.fr">
+      by zeuf
+  </author>  
+</widget>

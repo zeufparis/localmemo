@@ -1,0 +1,76 @@
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8">
+<title>LocalMemo</title>
+<style>
+textarea {
+  width: 100%;
+  height: 50%;
+}
+</style>
+</head>
+<body>
+
+<textarea id="memo_new_txt"></textarea>
+<button id="memo_new_btn_send">Ajout</button>
+
+<div id="memos_list">
+</div>
+
+<script>
+
+  function Display_Memos(localmemos){
+    // On affiche tous les mémos
+    for( var i = 0; i < localmemos.length; i++){
+      var tag = document.createElement("p");
+      var memo_old = document.createTextNode(localmemos[i]);
+      tag.appendChild(memo_old);
+      var element = document.getElementById("memos_list");
+      element.appendChild(tag);
+    }  
+  }
+  
+  function Get_Memos(){
+    return JSON.parse(localStorage.getItem("localmemos"));;
+  }
+  
+    var memos = [];
+    var localmemos_last = 0;
+    var localmemos = Get_Memos();
+    if (localmemos != null){
+      localmemos_last = localmemos.length;
+    }   
+
+  document.getElementById("memo_new_btn_send").addEventListener('click',function(){
+  
+    var memo_new_txt = document.getElementById("memo_new_txt").value;
+    if( memo_new_txt != ''){
+      document.getElementById("memo_new_txt").value = '';
+      
+      // on remet en mémoire les anciens memos
+      for( var i = 0; i < localmemos.length; i++){
+        memos[i] = localmemos[i];
+      }
+      
+      memos[localmemos_last] = memo_new_txt;
+      if (typeof(Storage) !== "undefined") {
+        //
+        localStorage.setItem("localmemos", JSON.stringify(memos));
+        //document.getElementById("memos_list").innerHTML = "";
+        localmemos = Get_Memos();
+        Display_Memos(localmemos); 
+        
+      } else {
+          alert("Impossible d'utiliser cette AppHTML avec ce matériel.");
+      }
+    }    
+    
+  });
+  
+  // init
+  Display_Memos(localmemos); 
+</script>
+
+</body>
+</html>
